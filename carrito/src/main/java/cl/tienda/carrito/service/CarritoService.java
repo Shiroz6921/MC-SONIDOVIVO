@@ -48,7 +48,7 @@ public class CarritoService {
         }
 
         item.setNombre(producto.titulo());
-        item.setPrecio(producto.precio());
+        item.setPrecio(producto.precioOferta() != null ? producto.precioOferta() : producto.precio());
         item.setImagen(producto.imagen());
         item.setCantidad(nuevaCantidad);
         repository.save(item);
@@ -68,7 +68,7 @@ public class CarritoService {
                     "Stock insuficiente para " + producto.titulo() + " (disponible: " + producto.stock() + ")");
         }
         item.setNombre(producto.titulo());
-        item.setPrecio(producto.precio());
+        item.setPrecio(producto.precioOferta() != null ? producto.precioOferta() : producto.precio());
         item.setImagen(producto.imagen());
         item.setCantidad(cantidad);
         repository.save(item);

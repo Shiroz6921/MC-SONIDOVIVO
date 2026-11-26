@@ -38,12 +38,20 @@ public class CatalogoService {
         } else {
             lista = productos.findByActivoTrue();
         }
+        lista.forEach(this::aplicarOferta);
         return lista;
     }
 
     public Producto obtenerProducto(Long id) {
-        return productos.findByIdAndActivoTrue(id)
+        Producto producto = productos.findByIdAndActivoTrue(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Producto no existe o fue retirado"));
+        aplicarOferta(producto);
+        return producto;
+    }
+
+    private void aplicarOferta(Producto producto) {
+        Oferta oferta = ofertas.findByProductoIdAndActivoTrue(producto.getId()).orElse(null);
+        producto.setPrecioOferta(oferta != null ? oferta.getPrecioOferta() : null);
     }
 
     @Transactional

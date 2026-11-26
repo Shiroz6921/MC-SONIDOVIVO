@@ -35,4 +35,7 @@ public class Producto {
 
     @Column(nullable = false)
     private Boolean activo = true;
+
+    @Transient
+    private BigDecimal precioOferta;
 }

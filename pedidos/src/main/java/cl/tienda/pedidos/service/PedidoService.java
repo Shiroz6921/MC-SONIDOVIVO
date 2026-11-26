@@ -64,9 +64,10 @@ public class PedidoService {
                 Pedido.Item item = new Pedido.Item();
                 item.setProductoId(producto.id());
                 item.setNombreProducto(producto.titulo());
-                item.setPrecioUnitario(producto.precio());
+                BigDecimal precioFinal = producto.precioOferta() != null ? producto.precioOferta() : producto.precio();
+                item.setPrecioUnitario(precioFinal);
                 item.setCantidad(entrada.getValue());
-                item.setSubtotal(producto.precio().multiply(BigDecimal.valueOf(entrada.getValue())));
+                item.setSubtotal(precioFinal.multiply(BigDecimal.valueOf(entrada.getValue())));
                 pedido.getItems().add(item);
             }
             return guardar(pedido);
