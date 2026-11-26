@@ -36,6 +36,9 @@ public class Pedido {
     @Column(name = "direccion_entrega", length = 200)
     private String direccionEntrega;
 
+    @Column(name = "metodo_pago", length = 20)
+    private String metodoPago = "TARJETA";
+
     @Column(nullable = false, length = 20)
     private String estado = "EN_PREPARACION";
 

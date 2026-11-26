@@ -15,6 +15,7 @@ public record CrearPedidoRequest(
         @NotBlank(message = "El tipo de entrega es obligatorio")
         @Pattern(regexp = "DESPACHO|RETIRO_TIENDA") String tipoEntrega,
         @Size(max = 200) String direccionEntrega,
+        @Size(max = 20) String metodoPago,
         @Valid @NotEmpty(message = "El pedido debe tener al menos un producto") List<Item> items
 ) {
     public record Item(

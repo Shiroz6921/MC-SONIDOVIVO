@@ -48,6 +48,7 @@ public class PedidoService {
         pedido.setUsuarioId(datos.usuarioId());
         pedido.setTipoEntrega(datos.tipoEntrega());
         pedido.setDireccionEntrega(datos.tipoEntrega().equals("DESPACHO") ? datos.direccionEntrega().trim() : null);
+        pedido.setMetodoPago(datos.metodoPago() == null || datos.metodoPago().isBlank() ? "TARJETA" : datos.metodoPago().trim());
 
         Map<Long, Integer> descontados = new LinkedHashMap<>();
         try {
